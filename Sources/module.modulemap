@@ -1,0 +1,5 @@
+framework module LabelKit {
+    umbrella header "LabelKit.h"
+    export *
+    module * { export * }
+}

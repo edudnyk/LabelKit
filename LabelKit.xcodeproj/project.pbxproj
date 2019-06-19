@@ -1,0 +1,1063 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9E30381F22DEA7CF00E3C385 /* LabelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9636AE22DB6CD400014F86 /* LabelKit.framework */; };
+		9E30382022DEA7CF00E3C385 /* LabelKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9636AE22DB6CD400014F86 /* LabelKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9E30382222DEA7FF00E3C385 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636EE22DC32A000014F86 /* ViewController.swift */; };
+		9E406D7E22E370C0001CB087 /* LabelKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9636CD22DC2E6000014F86 /* LabelKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9E406D7F22E370C0001CB087 /* LabelKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E9636CD22DC2E6000014F86 /* LabelKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9E406D8722E37135001CB087 /* LKExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E406D8622E37135001CB087 /* LKExtensionsTests.swift */; };
+		9E406D8922E37135001CB087 /* LabelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E96369B22DB634A00014F86 /* LabelKit.framework */; };
+		9E406D9822E3714B001CB087 /* LabelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9636AE22DB6CD400014F86 /* LabelKit.framework */; };
+		9E406D9E22E37170001CB087 /* LKExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E406D8622E37135001CB087 /* LKExtensionsTests.swift */; };
+		9E9636C122DC2E2A00014F86 /* LKTextDidChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BC22DC2E2A00014F86 /* LKTextDidChangeAction.swift */; };
+		9E9636C222DC2E2A00014F86 /* LKTextDidChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BC22DC2E2A00014F86 /* LKTextDidChangeAction.swift */; };
+		9E9636C322DC2E2A00014F86 /* LKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BD22DC2E2A00014F86 /* LKExtensions.swift */; };
+		9E9636C422DC2E2A00014F86 /* LKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BD22DC2E2A00014F86 /* LKExtensions.swift */; };
+		9E9636C522DC2E2A00014F86 /* LKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BE22DC2E2A00014F86 /* LKLabel.swift */; };
+		9E9636C622DC2E2A00014F86 /* LKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BE22DC2E2A00014F86 /* LKLabel.swift */; };
+		9E9636C722DC2E2A00014F86 /* LKBoundsDidChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BF22DC2E2A00014F86 /* LKBoundsDidChangeAction.swift */; };
+		9E9636C822DC2E2A00014F86 /* LKBoundsDidChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636BF22DC2E2A00014F86 /* LKBoundsDidChangeAction.swift */; };
+		9E9636C922DC2E2A00014F86 /* LKLabelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636C022DC2E2A00014F86 /* LKLabelLayer.swift */; };
+		9E9636CA22DC2E2A00014F86 /* LKLabelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636C022DC2E2A00014F86 /* LKLabelLayer.swift */; };
+		9E9636EB22DC32A000014F86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636EA22DC32A000014F86 /* AppDelegate.swift */; };
+		9E9636ED22DC32A000014F86 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636EC22DC32A000014F86 /* SceneDelegate.swift */; };
+		9E9636EF22DC32A000014F86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9636EE22DC32A000014F86 /* ViewController.swift */; };
+		9E9636F222DC32A000014F86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9636F022DC32A000014F86 /* Main.storyboard */; };
+		9E9636F722DC32A200014F86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9636F522DC32A200014F86 /* LaunchScreen.storyboard */; };
+		9EE0F66D22DD1F99002C9157 /* LabelKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E96369B22DB634A00014F86 /* LabelKit.framework */; };
+		9EE0F66E22DD1F99002C9157 /* LabelKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E96369B22DB634A00014F86 /* LabelKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9EF4973A22DEA73600F5F260 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4973922DEA73600F5F260 /* AppDelegate.swift */; };
+		9EF4973F22DEA73600F5F260 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF4973D22DEA73600F5F260 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E406D8A22E37135001CB087 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E2B92CA22BAFC7400A007F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E96369A22DB634A00014F86;
+			remoteInfo = "LabelKit iOS";
+		};
+		9E406D9922E3714B001CB087 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E2B92CA22BAFC7400A007F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E9636AD22DB6CD400014F86;
+			remoteInfo = "LabelKit tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9E30382122DEA7CF00E3C385 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9E30382022DEA7CF00E3C385 /* LabelKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EE0F66F22DD1F99002C9157 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9EE0F66E22DD1F99002C9157 /* LabelKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9E30382322DEAC3D00E3C385 /* INSTALL.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INSTALL.md; sourceTree = "<group>"; };
+		9E406D7D22E37036001CB087 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Sources/module.modulemap; sourceTree = "<group>"; };
+		9E406D8422E37135001CB087 /* LabelKit iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LabelKit iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E406D8622E37135001CB087 /* LKExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LKExtensionsTests.swift; sourceTree = "<group>"; };
+		9E406D8822E37135001CB087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E406D9322E3714B001CB087 /* LabelKit tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LabelKit tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E406D9722E3714B001CB087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E96369B22DB634A00014F86 /* LabelKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LabelKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9636AE22DB6CD400014F86 /* LabelKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LabelKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9636BC22DC2E2A00014F86 /* LKTextDidChangeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKTextDidChangeAction.swift; sourceTree = "<group>"; };
+		9E9636BD22DC2E2A00014F86 /* LKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKExtensions.swift; sourceTree = "<group>"; };
+		9E9636BE22DC2E2A00014F86 /* LKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKLabel.swift; sourceTree = "<group>"; };
+		9E9636BF22DC2E2A00014F86 /* LKBoundsDidChangeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKBoundsDidChangeAction.swift; sourceTree = "<group>"; };
+		9E9636C022DC2E2A00014F86 /* LKLabelLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKLabelLayer.swift; sourceTree = "<group>"; };
+		9E9636CC22DC2E6000014F86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = "<group>"; };
+		9E9636CD22DC2E6000014F86 /* LabelKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LabelKit.h; path = Sources/LabelKit.h; sourceTree = "<group>"; };
+		9E9636CE22DC2E7400014F86 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9E9636CF22DC2E7400014F86 /* LabelKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = LabelKit.podspec; sourceTree = "<group>"; };
+		9E9636D022DC2E7400014F86 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		9E9636E822DC32A000014F86 /* Example iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9636EA22DC32A000014F86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9E9636EC22DC32A000014F86 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9E9636EE22DC32A000014F86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9E9636F122DC32A000014F86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9E9636F622DC32A200014F86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9E9636F822DC32A200014F86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EF4973122DEA55F00F5F260 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9EF4973222DEA61600F5F260 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		9EF4973722DEA73600F5F260 /* Example tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EF4973922DEA73600F5F260 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9EF4973E22DEA73600F5F260 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9EF4974222DEA73800F5F260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E406D8122E37135001CB087 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E406D8922E37135001CB087 /* LabelKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E406D9022E3714B001CB087 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E406D9822E3714B001CB087 /* LabelKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96369822DB634A00014F86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636AB22DB6CD400014F86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636E522DC32A000014F86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EE0F66D22DD1F99002C9157 /* LabelKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EF4973422DEA73600F5F260 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E30381F22DEA7CF00E3C385 /* LabelKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E2B92C922BAFC7400A007F9 = {
+			isa = PBXGroup;
+			children = (
+				9E9636BB22DC2E2A00014F86 /* LabelKit */,
+				9E9636CB22DC2E3F00014F86 /* Supporting Files */,
+				9E9636E922DC32A000014F86 /* Example iOS */,
+				9EF4973822DEA73600F5F260 /* Example tvOS */,
+				9E406D8522E37135001CB087 /* LabelKit iOS Tests */,
+				9E406D9422E3714B001CB087 /* LabelKit tvOS Tests */,
+				9E2B92D322BAFC7400A007F9 /* Products */,
+				9E9636FC22DC335600014F86 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9E2B92D322BAFC7400A007F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E96369B22DB634A00014F86 /* LabelKit.framework */,
+				9E9636AE22DB6CD400014F86 /* LabelKit.framework */,
+				9E9636E822DC32A000014F86 /* Example iOS.app */,
+				9EF4973722DEA73600F5F260 /* Example tvOS.app */,
+				9E406D8422E37135001CB087 /* LabelKit iOS Tests.xctest */,
+				9E406D9322E3714B001CB087 /* LabelKit tvOS Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E406D8522E37135001CB087 /* LabelKit iOS Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9E406D8622E37135001CB087 /* LKExtensionsTests.swift */,
+				9E406D8822E37135001CB087 /* Info.plist */,
+			);
+			path = "LabelKit iOS Tests";
+			sourceTree = "<group>";
+		};
+		9E406D9422E3714B001CB087 /* LabelKit tvOS Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9E406D9722E3714B001CB087 /* Info.plist */,
+			);
+			path = "LabelKit tvOS Tests";
+			sourceTree = "<group>";
+		};
+		9E9636BB22DC2E2A00014F86 /* LabelKit */ = {
+			isa = PBXGroup;
+			children = (
+				9E9636BE22DC2E2A00014F86 /* LKLabel.swift */,
+				9E9636C022DC2E2A00014F86 /* LKLabelLayer.swift */,
+				9E9636BF22DC2E2A00014F86 /* LKBoundsDidChangeAction.swift */,
+				9E9636BC22DC2E2A00014F86 /* LKTextDidChangeAction.swift */,
+				9E9636BD22DC2E2A00014F86 /* LKExtensions.swift */,
+			);
+			name = LabelKit;
+			path = Sources/LabelKit;
+			sourceTree = "<group>";
+		};
+		9E9636CB22DC2E3F00014F86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9EF4973222DEA61600F5F260 /* .travis.yml */,
+				9EF4973122DEA55F00F5F260 /* LICENSE */,
+				9E9636CF22DC2E7400014F86 /* LabelKit.podspec */,
+				9E9636D022DC2E7400014F86 /* Package.swift */,
+				9E9636CE22DC2E7400014F86 /* README.md */,
+				9E30382322DEAC3D00E3C385 /* INSTALL.md */,
+				9E9636CC22DC2E6000014F86 /* Info.plist */,
+				9E9636CD22DC2E6000014F86 /* LabelKit.h */,
+				9E406D7D22E37036001CB087 /* module.modulemap */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E9636E922DC32A000014F86 /* Example iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9E9636EA22DC32A000014F86 /* AppDelegate.swift */,
+				9E9636EC22DC32A000014F86 /* SceneDelegate.swift */,
+				9E9636EE22DC32A000014F86 /* ViewController.swift */,
+				9E9636F022DC32A000014F86 /* Main.storyboard */,
+				9E9636F522DC32A200014F86 /* LaunchScreen.storyboard */,
+				9E9636F822DC32A200014F86 /* Info.plist */,
+			);
+			path = "Example iOS";
+			sourceTree = "<group>";
+		};
+		9E9636FC22DC335600014F86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9EF4973822DEA73600F5F260 /* Example tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				9EF4973922DEA73600F5F260 /* AppDelegate.swift */,
+				9EF4973D22DEA73600F5F260 /* Main.storyboard */,
+				9EF4974222DEA73800F5F260 /* Info.plist */,
+			);
+			path = "Example tvOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9E96369622DB634A00014F86 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E406D7F22E370C0001CB087 /* LabelKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636A922DB6CD400014F86 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E406D7E22E370C0001CB087 /* LabelKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9E406D8322E37135001CB087 /* LabelKit iOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E406D8C22E37135001CB087 /* Build configuration list for PBXNativeTarget "LabelKit iOS Tests" */;
+			buildPhases = (
+				9E406D8022E37135001CB087 /* Sources */,
+				9E406D8122E37135001CB087 /* Frameworks */,
+				9E406D8222E37135001CB087 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E406D8B22E37135001CB087 /* PBXTargetDependency */,
+			);
+			name = "LabelKit iOS Tests";
+			productName = "LabelKit iOS Tests";
+			productReference = 9E406D8422E37135001CB087 /* LabelKit iOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9E406D9222E3714B001CB087 /* LabelKit tvOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E406D9B22E3714B001CB087 /* Build configuration list for PBXNativeTarget "LabelKit tvOS Tests" */;
+			buildPhases = (
+				9E406D8F22E3714B001CB087 /* Sources */,
+				9E406D9022E3714B001CB087 /* Frameworks */,
+				9E406D9122E3714B001CB087 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E406D9A22E3714B001CB087 /* PBXTargetDependency */,
+			);
+			name = "LabelKit tvOS Tests";
+			productName = "LabelKit tvOS Tests";
+			productReference = 9E406D9322E3714B001CB087 /* LabelKit tvOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9E96369A22DB634A00014F86 /* LabelKit iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9636A022DB634A00014F86 /* Build configuration list for PBXNativeTarget "LabelKit iOS" */;
+			buildPhases = (
+				9E96369622DB634A00014F86 /* Headers */,
+				9E96369722DB634A00014F86 /* Sources */,
+				9E96369822DB634A00014F86 /* Frameworks */,
+				9E96369922DB634A00014F86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LabelKit iOS";
+			productName = LabelKit;
+			productReference = 9E96369B22DB634A00014F86 /* LabelKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9E9636AD22DB6CD400014F86 /* LabelKit tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9636B322DB6CD400014F86 /* Build configuration list for PBXNativeTarget "LabelKit tvOS" */;
+			buildPhases = (
+				9E9636A922DB6CD400014F86 /* Headers */,
+				9E9636AA22DB6CD400014F86 /* Sources */,
+				9E9636AB22DB6CD400014F86 /* Frameworks */,
+				9E9636AC22DB6CD400014F86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LabelKit tvOS";
+			productName = "LabelKit-tvOS";
+			productReference = 9E9636AE22DB6CD400014F86 /* LabelKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9E9636E722DC32A000014F86 /* Example iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9636F922DC32A200014F86 /* Build configuration list for PBXNativeTarget "Example iOS" */;
+			buildPhases = (
+				9E9636E422DC32A000014F86 /* Sources */,
+				9E9636E522DC32A000014F86 /* Frameworks */,
+				9E9636E622DC32A000014F86 /* Resources */,
+				9EE0F66F22DD1F99002C9157 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Example iOS";
+			productName = "Example iOS";
+			productReference = 9E9636E822DC32A000014F86 /* Example iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9EF4973622DEA73600F5F260 /* Example tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9EF4974322DEA73800F5F260 /* Build configuration list for PBXNativeTarget "Example tvOS" */;
+			buildPhases = (
+				9EF4973322DEA73600F5F260 /* Sources */,
+				9EF4973422DEA73600F5F260 /* Frameworks */,
+				9EF4973522DEA73600F5F260 /* Resources */,
+				9E30382122DEA7CF00E3C385 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Example tvOS";
+			productName = "Example tvOS";
+			productReference = 9EF4973722DEA73600F5F260 /* Example tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E2B92CA22BAFC7400A007F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Imaginarium Works";
+				TargetAttributes = {
+					9E406D8322E37135001CB087 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					9E406D9222E3714B001CB087 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					9E96369A22DB634A00014F86 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					9E9636AD22DB6CD400014F86 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					9E9636E722DC32A000014F86 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					9EF4973622DEA73600F5F260 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = 9E2B92CD22BAFC7400A007F9 /* Build configuration list for PBXProject "LabelKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9E2B92C922BAFC7400A007F9;
+			productRefGroup = 9E2B92D322BAFC7400A007F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E96369A22DB634A00014F86 /* LabelKit iOS */,
+				9E9636AD22DB6CD400014F86 /* LabelKit tvOS */,
+				9E9636E722DC32A000014F86 /* Example iOS */,
+				9EF4973622DEA73600F5F260 /* Example tvOS */,
+				9E406D8322E37135001CB087 /* LabelKit iOS Tests */,
+				9E406D9222E3714B001CB087 /* LabelKit tvOS Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E406D8222E37135001CB087 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E406D9122E3714B001CB087 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96369922DB634A00014F86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636AC22DB6CD400014F86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636E622DC32A000014F86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9636F722DC32A200014F86 /* LaunchScreen.storyboard in Resources */,
+				9E9636F222DC32A000014F86 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EF4973522DEA73600F5F260 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EF4973F22DEA73600F5F260 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E406D8022E37135001CB087 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E406D8722E37135001CB087 /* LKExtensionsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E406D8F22E3714B001CB087 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E406D9E22E37170001CB087 /* LKExtensionsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E96369722DB634A00014F86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9636C922DC2E2A00014F86 /* LKLabelLayer.swift in Sources */,
+				9E9636C322DC2E2A00014F86 /* LKExtensions.swift in Sources */,
+				9E9636C122DC2E2A00014F86 /* LKTextDidChangeAction.swift in Sources */,
+				9E9636C522DC2E2A00014F86 /* LKLabel.swift in Sources */,
+				9E9636C722DC2E2A00014F86 /* LKBoundsDidChangeAction.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636AA22DB6CD400014F86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9636CA22DC2E2A00014F86 /* LKLabelLayer.swift in Sources */,
+				9E9636C422DC2E2A00014F86 /* LKExtensions.swift in Sources */,
+				9E9636C222DC2E2A00014F86 /* LKTextDidChangeAction.swift in Sources */,
+				9E9636C622DC2E2A00014F86 /* LKLabel.swift in Sources */,
+				9E9636C822DC2E2A00014F86 /* LKBoundsDidChangeAction.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9636E422DC32A000014F86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9636EF22DC32A000014F86 /* ViewController.swift in Sources */,
+				9E9636EB22DC32A000014F86 /* AppDelegate.swift in Sources */,
+				9E9636ED22DC32A000014F86 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EF4973322DEA73600F5F260 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E30382222DEA7FF00E3C385 /* ViewController.swift in Sources */,
+				9EF4973A22DEA73600F5F260 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E406D8B22E37135001CB087 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E96369A22DB634A00014F86 /* LabelKit iOS */;
+			targetProxy = 9E406D8A22E37135001CB087 /* PBXContainerItemProxy */;
+		};
+		9E406D9A22E3714B001CB087 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E9636AD22DB6CD400014F86 /* LabelKit tvOS */;
+			targetProxy = 9E406D9922E3714B001CB087 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9E9636F022DC32A000014F86 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E9636F122DC32A000014F86 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9E9636F522DC32A200014F86 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E9636F622DC32A200014F86 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9EF4973D22DEA73600F5F260 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9EF4973E22DEA73600F5F260 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9E2B92D722BAFC7400A007F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9E2B92D822BAFC7400A007F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9E406D8D22E37135001CB087 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "LabelKit iOS Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-iOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		9E406D8E22E37135001CB087 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "LabelKit iOS Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-iOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		9E406D9C22E3714B001CB087 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "LabelKit tvOS Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-tvOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		9E406D9D22E3714B001CB087 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "LabelKit tvOS Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-tvOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		9E9636A122DB634A00014F86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MODULEMAP_FILE = Sources/module.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-iOS";
+				PRODUCT_NAME = LabelKit;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9E9636A222DB634A00014F86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MODULEMAP_FILE = Sources/module.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-iOS";
+				PRODUCT_NAME = LabelKit;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9E9636B422DB6CD400014F86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MODULEMAP_FILE = Sources/module.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-tvOS";
+				PRODUCT_NAME = LabelKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9E9636B522DB6CD400014F86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = mh_dylib;
+				MODULEMAP_FILE = Sources/module.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.LabelKit-tvOS";
+				PRODUCT_NAME = LabelKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9E9636FA22DC32A200014F86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W6T3BTXAHJ;
+				INFOPLIST_FILE = "Example iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.Example-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		9E9636FB22DC32A200014F86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W6T3BTXAHJ;
+				INFOPLIST_FILE = "Example iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.Example-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		9EF4974422DEA73800F5F260 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W6T3BTXAHJ;
+				INFOPLIST_FILE = "Example tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.Example-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		9EF4974522DEA73800F5F260 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W6T3BTXAHJ;
+				INFOPLIST_FILE = "Example tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.labelkit.Example-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E2B92CD22BAFC7400A007F9 /* Build configuration list for PBXProject "LabelKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E2B92D722BAFC7400A007F9 /* Debug */,
+				9E2B92D822BAFC7400A007F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E406D8C22E37135001CB087 /* Build configuration list for PBXNativeTarget "LabelKit iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E406D8D22E37135001CB087 /* Debug */,
+				9E406D8E22E37135001CB087 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E406D9B22E3714B001CB087 /* Build configuration list for PBXNativeTarget "LabelKit tvOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E406D9C22E3714B001CB087 /* Debug */,
+				9E406D9D22E3714B001CB087 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9636A022DB634A00014F86 /* Build configuration list for PBXNativeTarget "LabelKit iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9636A122DB634A00014F86 /* Debug */,
+				9E9636A222DB634A00014F86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9636B322DB6CD400014F86 /* Build configuration list for PBXNativeTarget "LabelKit tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9636B422DB6CD400014F86 /* Debug */,
+				9E9636B522DB6CD400014F86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E9636F922DC32A200014F86 /* Build configuration list for PBXNativeTarget "Example iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9636FA22DC32A200014F86 /* Debug */,
+				9E9636FB22DC32A200014F86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9EF4974322DEA73800F5F260 /* Build configuration list for PBXNativeTarget "Example tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EF4974422DEA73800F5F260 /* Debug */,
+				9EF4974522DEA73800F5F260 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9E2B92CA22BAFC7400A007F9 /* Project object */;
+}
