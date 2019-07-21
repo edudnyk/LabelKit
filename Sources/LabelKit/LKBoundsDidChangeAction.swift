@@ -68,5 +68,17 @@ class LKBoundsDidChangeAction : CAAction {
             textLayer.add(pendingAnimation, forKey:keyPath(\LKBoundsDidChangeAnimation.bounds))
         }
     }
+}
+
+class LKCompositeAction : CAAction {
+    var actions : [CAAction]
+    init(actions: [CAAction]) {
+        self.actions = actions
+    }
     
+    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable : Any]?) {
+        actions.forEach { (action) in
+            action.run(forKey: event, object: anObject, arguments: dict)
+        }
+    }
 }

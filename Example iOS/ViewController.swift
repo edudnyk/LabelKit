@@ -25,7 +25,12 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.label.attributedText = self.randomAttributedText()
+        UIView.performWithoutAnimation {
+            view.setNeedsLayout()
+            label.setNeedsLayout()
+            self.label.attributedText = self.randomAttributedText()
+            view.layoutIfNeeded()
+        }
         startAnimation()
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -44,8 +49,11 @@ class ViewController: UIViewController {
     }
     
     @objc func updateText() {
+        view.setNeedsLayout()
+        label.setNeedsLayout()
         UIView.animate(withDuration: 3, delay: 0, options: [], animations: {
             self.label.attributedText = self.randomAttributedText()
+            self.view.layoutIfNeeded()
         }, completion: nil)
     }
     

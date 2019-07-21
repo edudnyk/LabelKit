@@ -17,8 +17,31 @@ class LKExtensionsTests : XCTestCase {
         let font2 = UIFont.lk_dictDecode(dictionaryRepresentation: dict)
         XCTAssertEqual(font, font2)
     }
+    
+    func testColorDecoding() {
+        let color = UIColor(red: 0.2, green: 0.4, blue: 0.3, alpha: 0.55)
+        let dict = UIColor.lk_dictEncode(object: color)
+        let color2 = UIColor.lk_dictDecode(dictionaryRepresentation: dict)
+        XCTAssertEqual(color, color2)
+    }
+    
+    func testParagraphStyleDecoding() {
+        let ps = NSMutableParagraphStyle()
+        ps.lineSpacing = 42
+        let dict = NSParagraphStyle.lk_dictEncode(object: ps)
+        let ps2 = NSParagraphStyle.lk_dictDecode(dictionaryRepresentation: dict)
+        XCTAssertEqual(ps, ps2)
+    }
+    
+    func testShadowDecoding() {
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor.magenta
+            let dict = NSShadow.lk_dictEncode(object: shadow)
+            let shadow2 = NSShadow.lk_dictDecode(dictionaryRepresentation: dict)
+            XCTAssertEqual(shadow, shadow2)
+        }
 
-    func testPerformanceFontWeightDecoding() {
+    func testFontWeightDecodingPerformance() {
         // This is an example of a performance test case.
         self.measure {
             for _ in 0 ..< 1000 {

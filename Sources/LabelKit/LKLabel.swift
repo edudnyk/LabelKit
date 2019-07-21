@@ -33,6 +33,9 @@
 
 import UIKit
 
+/// A subclass of `UILabel` that displays one or more lines of read-only text, often used in conjunction with controls to describe their intended purpose.
+/// `allowsDefaultTighteningForTruncation` and `baselineAdjustment` properties are not supported.
+/// Only `.byTruncatingTail` line break mode is supported.
 open class LKLabel : UILabel {
     open override class var layerClass: AnyClass {
         get {
@@ -40,7 +43,7 @@ open class LKLabel : UILabel {
         }
     }
     
-    open var labelLayer : LKLabelLayer? {
+    var labelLayer : LKLabelLayer? {
         get {
             return self.layer as? LKLabelLayer
         }
@@ -60,11 +63,16 @@ open class LKLabel : UILabel {
         labelLayer?.isOpaque = false
         labelLayer?.needsDisplayOnBoundsChange = true
         labelLayer?.contentsScale = UIScreen.main.scale
+        let minimumScaleFactor = self.minimumScaleFactor
+        self.minimumScaleFactor = minimumScaleFactor
         isOpaque = false
         isUserInteractionEnabled = false
         contentMode = .redraw
     }
     
+    /// The underlying attributed string drawn by the label, if set, the label ignores the `font`, `textColor`, `shadowColor`, and `shadowOffset` properties.
+    /// If `.paragraphStyle` attribute is absent in the attributed string, it is created incorporating the label's `textAlignment` property.
+    /// Animatable.
     open override var attributedText: NSAttributedString? {
         didSet(previousValue) {
             CATransaction.begin()
@@ -74,6 +82,8 @@ open class LKLabel : UILabel {
         }
     }
     
+    /// The current text that is displayed by the label.
+    /// Animatable.
     open override var text: String? {
         didSet(previousValue) {
             CATransaction.begin()
@@ -89,6 +99,7 @@ open class LKLabel : UILabel {
         }
     }
     
+    /// Triggers bounds animation which provides public access to interpolated bounds during the text animation.
     open override func action(for layer: CALayer, forKey event: String) -> CAAction? {
         let result = super.action(for: layer, forKey: event)
         if event == keyPath(\CALayer.bounds) && result != nil && UIView.inheritedAnimationDuration > 0 {
@@ -99,7 +110,8 @@ open class LKLabel : UILabel {
         return result
     }
     
-    open override func display(_ layer: CALayer) {
+    /// Draws the text. Called by the layer, must not be directly called.
+    override open func display(_ layer: CALayer) {
         if let labelLayer = layer as? LKLabelLayer {
             let textDrawingBoundsAction = labelLayer.currentBoundsDidChangeAnimation
             let rect = textDrawingBoundsAction?.bounds ?? self.bounds
@@ -121,26 +133,11 @@ open class LKLabel : UILabel {
             hasParagraphStyle = hasParagraphStyle || value != nil
             stop.assign(repeating: ObjCBool(hasParagraphStyle), count: 1)
         }
-        if !hasParagraphStyle {
-            let mutableText = NSMutableAttributedString(attributedString: attributedText)
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = textAlignment
-            mutableText.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
-            return mutableText
-        }
-        return attributedText
-    }
-}
-
-class LKCompositeAction : CAAction {
-    var actions : [CAAction]
-    init(actions: [CAAction]) {
-        self.actions = actions
-    }
-    
-    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable : Any]?) {
-        actions.forEach { (action) in
-            action.run(forKey: event, object: anObject, arguments: dict)
-        }
+        guard !hasParagraphStyle else { return attributedText }
+        let mutableText = NSMutableAttributedString(attributedString: attributedText)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = textAlignment
+        mutableText.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
+        return mutableText
     }
 }

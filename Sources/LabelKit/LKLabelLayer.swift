@@ -35,11 +35,13 @@ import QuartzCore
 import UIKit
 
 open class LKLabelLayer : CALayer {
-    private var stringDrawingContext : NSStringDrawingContext!
-    open var stringDrawingOptions : NSStringDrawingOptions!
+    fileprivate var stringDrawingContext : NSStringDrawingContext!
+    fileprivate var stringDrawingOptions : NSStringDrawingOptions!
     private weak var textPresentationLayer : LKLabelLayer!
     
-    @objc @NSManaged dynamic var attributedText : NSAttributedString?
+    /// The underlying attributed string drawn by the label layer.
+    /// Animatable.
+    @objc @NSManaged open dynamic var attributedText : NSAttributedString?
     
     public override init() {
         super.init()
@@ -67,18 +69,28 @@ open class LKLabelLayer : CALayer {
         isOpaque = false
     }
     
+    /// Triggers attributed text change implicit animation.
+    /// If layer is used without `LKLabel`, also triggers supporting bounds change action.
     open override func action(forKey event: String) -> CAAction? {
         if event == keyPath(\LKLabelLayer.attributedText) {
             let action = textPresentationLayer?.currentTextDidChangeAnimation
             let fromText = action != nil ? action!.interpolatedFromAlpha > action!.interpolatedToAlpha ? action!.interpolatedFromAttributedText : action!.interpolatedToAttributedText : self.attributedText
             return LKTextDidChangeAction(from: fromText)
         }
-        return super.action(forKey:event)
+        let superAction = super.action(forKey:event)
+        guard event == keyPath(\CALayer.bounds) && type(of: superAction) != LKCompositeAction.self else { return superAction }
+        let textDrawingBoundsAction = LKBoundsDidChangeAction(fromBounds: self.bounds)
+        let action : CAAction = superAction != nil ? LKCompositeAction(actions: [superAction!, textDrawingBoundsAction]) : textDrawingBoundsAction
+        return action
     }
     
     open override func preferredFrameSize()->CGSize {
         let result = attributedText?.boundingRect(with:CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude), options:stringDrawingOptions, context:stringDrawingContext).size
         return CGSize(width: ceil((result?.width ?? 0) + 1), height: ceil((result?.height ?? 0) + 1))
+    }
+    
+    open override func draw(in ctx: CGContext) {
+        drawText(in: ctx.boundingBoxOfClipPath)
     }
     
     fileprivate func drawText(in rect: CGRect) {
@@ -137,5 +149,30 @@ extension LKLabel {
     open override func drawText(in rect: CGRect) {
         let layer = self.labelLayer?.presentation() ?? self.labelLayer
         layer?.drawText(in: rect)
+    }
+    
+    open override var minimumScaleFactor: CGFloat {
+        didSet(previousValue) {
+            labelLayer?.stringDrawingContext.minimumScaleFactor = adjustsFontSizeToFitWidth ? minimumScaleFactor : 1.0
+        }
+    }
+    
+    open override var adjustsFontSizeToFitWidth: Bool {
+        didSet(previousValue) {
+            let minimumScaleFactor = self.minimumScaleFactor
+            self.minimumScaleFactor = minimumScaleFactor
+        }
+    }
+    
+    open override var lineBreakMode: NSLineBreakMode {
+        didSet(previousValue) {
+            if let labelLayer = self.labelLayer {
+                if (lineBreakMode == .byTruncatingTail) {
+                    labelLayer.stringDrawingOptions = labelLayer.stringDrawingOptions.union(.truncatesLastVisibleLine)
+                } else {
+                    labelLayer.stringDrawingOptions = labelLayer.stringDrawingOptions.remove(.truncatesLastVisibleLine)
+                }
+            }
+        }
     }
 }
