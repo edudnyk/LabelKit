@@ -18,10 +18,10 @@ It is a great and simple building block for UI which implements material design.
 
 ## Requirements
 
-![xcode](https://img.shields.io/badge/xcode-10.1%2b-lightgrey.svg)
-![ios](https://img.shields.io/badge/ios-8.0%2b-lightgrey.svg)
+![xcode](https://img.shields.io/badge/xcode-11%2b-lightgrey.svg)
+![ios](https://img.shields.io/badge/ios-9.0%2b-lightgrey.svg)
 ![tvos](https://img.shields.io/badge/tvos-9.0%2b-lightgrey.svg)
-![mac os](https://img.shields.io/badge/mac%20os-10.10%2b-lightgrey.svg)
+![mac os](https://img.shields.io/badge/mac%20os-10.15%2b-lightgrey.svg)
 
 Installation >> [`instructions`](https://github.com/edudnyk/LabelKit/blob/master/INSTALL.md) <<
 
