@@ -16,8 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0N-N1-aYl" customClass="LKLabel" customModule="LabelKit">
-                                <rect key="frame" x="207" y="453" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0N-N1-aYl" customClass="LKLabel" customModule="LabelKit">
+                                <rect key="frame" x="0.0" y="453" width="414" height="0.0"/>
+                                <edgeInsets key="layoutMargins" top="20" left="20" bottom="20" right="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -25,12 +26,9 @@
                         </subviews>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="o0N-N1-aYl" secondAttribute="trailing" id="2eW-7H-LlK"/>
-                            <constraint firstItem="o0N-N1-aYl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Foo-cC-ceq"/>
-                            <constraint firstItem="o0N-N1-aYl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KLK-7K-NE3"/>
-                            <constraint firstItem="o0N-N1-aYl" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="UBQ-qP-0MF"/>
-                            <constraint firstItem="o0N-N1-aYl" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="jzz-je-TUB"/>
-                            <constraint firstItem="o0N-N1-aYl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" id="m7v-1p-iNK"/>
+                            <constraint firstItem="o0N-N1-aYl" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KuS-5u-QIp"/>
+                            <constraint firstItem="o0N-N1-aYl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MXe-8y-dKC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o0N-N1-aYl" secondAttribute="trailing" id="zC9-2T-AhR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

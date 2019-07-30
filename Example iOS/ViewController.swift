@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         attributedText.beginEditing()
         attributedText.addAttributes([.foregroundColor : self.randomColor(),
                                       .font : self.randomFont(),
-                                      .shadow : self.randomShadow() ], range: NSRange(string.startIndex..<string.endIndex, in: string))
+                                      .shadow : self.randomShadow(),], range: NSRange(string.startIndex..<string.endIndex, in: string))
         attributedText.endEditing()
         return attributedText
     }
@@ -74,8 +74,8 @@ class ViewController: UIViewController {
     }
     
     func randomFont()->UIFont {
-        let pointSize = 10.0 + rnd() * 22.0
-        let weigth = UIFont.Weight(CGFloat(rnd() * 2 - 1))
+        let pointSize = 20.0 + rnd() * 22.0
+        let weigth = UIFont.Weight(CGFloat(0)) //UIFont.Weight(CGFloat(rnd() * 2 - 1))
         return UIFont.systemFont(ofSize: pointSize, weight: weigth)
     }
     

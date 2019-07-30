@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'LabelKit'
-  s.version = '1.0.2'
+  s.version = '1.0.3'
   s.license = 'Simplified BSD License'
   s.summary = 'An smart and animatable UILabel with tools for advanced text layouts, written in Swift'
   s.homepage = 'https://github.com/edudnyk/LabelKit'

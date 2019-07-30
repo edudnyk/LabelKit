@@ -125,6 +125,15 @@ open class LKLabel : UILabel {
         super.display(layer)
     }
     
+    open override var intrinsicContentSize: CGSize {
+        get {
+            var ics = super.intrinsicContentSize
+            ics.width = (ics.width < CGFloat(UINT16_MAX)) ? CGFloat(ceil(ics.width + self.layoutMargins.left + self.layoutMargins.right)) : ics.width
+            ics.height = (ics.height < CGFloat(UINT16_MAX)) ? CGFloat(ceil(ics.height + self.layoutMargins.top + self.layoutMargins.bottom)) : ics.height
+            return ics
+        }
+    }
+    
     private func alignedAttributedText(_ attributedText: NSAttributedString?) -> NSAttributedString? {
         guard let attributedText = attributedText else { return nil }
         var hasParagraphStyle = false

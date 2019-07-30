@@ -74,7 +74,14 @@ class LKTextDidChangeAction : CAAnimationGroup {
         }
     }
     @objc private(set) var interpolatedFromAlpha : CGFloat = 0
-    @objc private(set) var interpolatedToAlpha : CGFloat = 0
+    @objc private(set) var interpolatedToAlpha : CGFloat = 0 {
+        didSet(previousValue) {
+            if previousValue == 0 && interpolatedToAlpha == 1 {
+                interpolatedToAlpha = 0
+                interpolatedFromAlpha = 1
+            }
+        }
+    }
     @objc var interpolatedAttributeStates : NSMutableDictionary!
     
     var fromAttributedText : NSAttributedString?
@@ -90,14 +97,16 @@ class LKTextDidChangeAction : CAAnimationGroup {
             var animations = [CABasicAnimation]()
             let rootAttributesKey = keyPath(\LKLabelLayer.currentTextDidChangeAnimation?.interpolatedAttributeStates)
             let shouldAnimateAlpha = (fromAttributedText != nil || toAttributedText != nil) && fromAttributedText?.string != toAttributedText?.string
-            self.interpolatedFromAlpha = 0.0
-            self.interpolatedToAlpha = 1.0
+            var interpolatedFromAlpha : CGFloat = 0.0
+            var interpolatedToAlpha : CGFloat = 1.0
             if (shouldAnimateAlpha) {
-                self.interpolatedFromAlpha = 1.0
-                self.interpolatedToAlpha = 0.0
-                animations.append(contentsOf: type(of: self).animationsForAlphaSwap(forKeyPath: keyPath(\LKLabelLayer.currentTextDidChangeAnimation?.interpolatedFromAlpha), fromValue:1, toValue:0))
-                animations.append(contentsOf: type(of: self).animationsForAlphaSwap(forKeyPath: keyPath(\LKLabelLayer.currentTextDidChangeAnimation?.interpolatedToAlpha), fromValue:0, toValue:1))
+                interpolatedFromAlpha = 1.0
+                interpolatedToAlpha = 0.0
+                animations.append(contentsOf: type(of: self).animationsForAlphaSwap(forKeyPath: keyPath(\LKLabelLayer.currentTextDidChangeAnimation?.interpolatedFromAlpha), fromValue:interpolatedFromAlpha, toValue:interpolatedToAlpha))
+                animations.append(contentsOf: type(of: self).animationsForAlphaSwap(forKeyPath: keyPath(\LKLabelLayer.currentTextDidChangeAnimation?.interpolatedToAlpha), fromValue:interpolatedToAlpha, toValue:interpolatedFromAlpha))
             }
+            self.interpolatedFromAlpha = interpolatedFromAlpha
+            self.interpolatedToAlpha = interpolatedToAlpha
             type(of: self).attributedStringKeys.forEach { (attributeRawValue) in
                 var shorterTextValue : AnyObject? = nil
                 let attributedStringKey = NSAttributedString.Key(rawValue: attributeRawValue)
