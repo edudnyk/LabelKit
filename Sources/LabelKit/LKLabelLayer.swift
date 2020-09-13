@@ -97,7 +97,8 @@ open class LKLabelLayer : CALayer {
         guard let ctx = UIGraphicsGetCurrentContext() else { return }
         let textChangeAction = currentTextDidChangeAnimation
         let toAlpha = textChangeAction?.interpolatedToAlpha ?? 1.0
-        let toDrawingString = textChangeAction?.interpolatedToAttributedText ?? attributedText
+        let modelLayer = model()
+        let toDrawingString = textChangeAction?.interpolatedToAttributedText ?? modelLayer.attributedText
         if textChangeAction?.interpolatedFromAlpha ?? 0 > 0 || toAlpha > 0 {
             ctx.setAllowsAntialiasing(true)
             ctx.setAllowsFontSmoothing(true)
@@ -107,7 +108,7 @@ open class LKLabelLayer : CALayer {
             ctx.setShouldSmoothFonts(true)
             ctx.setShouldSubpixelPositionFonts(true)
             var stringDrawingOptions = self.stringDrawingOptions ?? []
-            if model() != self {
+            if modelLayer != self {
                 stringDrawingOptions = [stringDrawingOptions, .truncatesLastVisibleLine]
             }
             let fromAlpha = textChangeAction?.interpolatedFromAlpha ?? 0
@@ -174,5 +175,12 @@ extension LKLabel {
                 }
             }
         }
+    }
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        let actionsDisabled = CATransaction.disableActions()
+        CATransaction.setDisableActions(true)
+        super.traitCollectionDidChange(previousTraitCollection)
+        CATransaction.setDisableActions(actionsDisabled)
     }
 }

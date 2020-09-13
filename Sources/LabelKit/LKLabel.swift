@@ -115,12 +115,18 @@ open class LKLabel : UILabel {
         if let labelLayer = layer as? LKLabelLayer {
             let textDrawingBoundsAction = labelLayer.currentBoundsDidChangeAnimation
             let rect = textDrawingBoundsAction?.bounds ?? self.bounds
-            UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
-            let textRect = rect.inset(by: self.layoutMargins)
-            drawText(in: textRect)
-            layer.contents = UIGraphicsGetImageFromCurrentImageContext()?.cgImage
-            UIGraphicsEndImageContext()
-            return
+            let limit = CGFloat(UINT16_MAX)
+            if rect.isEmpty || rect.size.width > limit || rect.size.height > limit {
+                labelLayer.contents = nil
+                return
+            } else {
+                UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
+                let textRect = rect.inset(by: self.layoutMargins)
+                drawText(in: textRect)
+                layer.contents = UIGraphicsGetImageFromCurrentImageContext()?.cgImage
+                UIGraphicsEndImageContext()
+                return
+            }
         }
         super.display(layer)
     }
@@ -128,8 +134,9 @@ open class LKLabel : UILabel {
     open override var intrinsicContentSize: CGSize {
         get {
             var ics = super.intrinsicContentSize
-            ics.width = (ics.width < CGFloat(UINT16_MAX)) ? CGFloat(ceil(ics.width + self.layoutMargins.left + self.layoutMargins.right)) : ics.width
-            ics.height = (ics.height < CGFloat(UINT16_MAX)) ? CGFloat(ceil(ics.height + self.layoutMargins.top + self.layoutMargins.bottom)) : ics.height
+            let limit = CGFloat(UINT16_MAX)
+            ics.width = (ics.width < limit) ? CGFloat(ceil(ics.width + self.layoutMargins.left + self.layoutMargins.right)) : ics.width
+            ics.height = (ics.height < limit) ? CGFloat(ceil(ics.height + self.layoutMargins.top + self.layoutMargins.bottom)) : ics.height
             return ics
         }
     }
