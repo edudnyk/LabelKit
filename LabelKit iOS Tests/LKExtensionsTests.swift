@@ -10,7 +10,7 @@ import XCTest
 @testable import LabelKit
 
 class LKExtensionsTests : XCTestCase {
-
+    
     func testFontWeightDecoding() {
         let font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         let dict = UIFont.lk_dictEncode(object: font)
@@ -34,13 +34,13 @@ class LKExtensionsTests : XCTestCase {
     }
     
     func testShadowDecoding() {
-            let shadow = NSShadow()
-            shadow.shadowColor = UIColor.magenta
-            let dict = NSShadow.lk_dictEncode(object: shadow)
-            let shadow2 = NSShadow.lk_dictDecode(dictionaryRepresentation: dict)
-            XCTAssertEqual(shadow, shadow2)
-        }
-
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.magenta
+        let dict = NSShadow.lk_dictEncode(object: shadow)
+        let shadow2 = NSShadow.lk_dictDecode(dictionaryRepresentation: dict)
+        XCTAssertEqual(shadow, shadow2)
+    }
+    
     func testFontWeightDecodingPerformance() {
         // This is an example of a performance test case.
         self.measure {
@@ -51,7 +51,7 @@ class LKExtensionsTests : XCTestCase {
             }
         }
     }
-
+    
     func rnd()->CGFloat {
         return CGFloat(arc4random()) / CGFloat(UINT32_MAX)
     }
