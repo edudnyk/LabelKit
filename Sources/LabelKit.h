@@ -2,7 +2,7 @@
 //  LabelKit.h
 //  LabelKit
 //
-//  Copyright (c) 2019 Eugene Dudnyk
+//  Copyright (c) 2019-2021 Eugene Dudnyk
 //
 //  All rights reserved.
 //

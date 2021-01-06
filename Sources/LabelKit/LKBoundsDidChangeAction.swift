@@ -2,7 +2,7 @@
 //  LKBoundsDidChangeAnimation.swift
 //  LabelKit
 //
-//  Copyright (c) 2019 Eugene Dudnyk
+//  Copyright (c) 2019-2021 Eugene Dudnyk
 //
 //  All rights reserved.
 //
@@ -34,9 +34,9 @@
 import QuartzCore
 import UIKit
 
-class LKBoundsDidChangeAnimation : CABasicAnimation {
-    @objc var bounds : CGRect = CGRect.zero
-    
+class LKBoundsDidChangeAnimation: CABasicAnimation {
+    @objc var bounds = CGRect.zero
+
     override func copy(with zone: NSZone? = nil) -> Any {
         let result = super.copy(with: zone)
         if let action = result as? Self {
@@ -47,9 +47,9 @@ class LKBoundsDidChangeAnimation : CABasicAnimation {
     }
 }
 
-class LKBoundsDidChangeAction : CAAction {
-    var pendingAnimation : LKBoundsDidChangeAnimation
-    
+class LKBoundsDidChangeAction: CAAction {
+    var pendingAnimation: LKBoundsDidChangeAnimation
+
     init(fromBounds: CGRect) {
         let rootContextKey = keyPath(\LKLabelLayer.currentBoundsDidChangeAnimation)
         let animation = LKBoundsDidChangeAnimation(keyPath:
@@ -60,24 +60,24 @@ class LKBoundsDidChangeAction : CAAction {
         animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         pendingAnimation = animation
     }
-    
-    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable : Any]?) {
+
+    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable: Any]?) {
         guard let textLayer = anObject as? LKLabelLayer, event == keyPath(\LKLabelLayer.bounds) else { return }
         if !pendingAnimation.bounds.equalTo(textLayer.bounds) {
             pendingAnimation.toValue = textLayer.bounds
-            textLayer.add(pendingAnimation, forKey:keyPath(\LKBoundsDidChangeAnimation.bounds))
+            textLayer.add(pendingAnimation, forKey: keyPath(\LKBoundsDidChangeAnimation.bounds))
         }
     }
 }
 
-class LKCompositeAction : CAAction {
-    var actions : [CAAction]
+class LKCompositeAction: CAAction {
+    var actions: [CAAction]
     init(actions: [CAAction]) {
         self.actions = actions
     }
-    
-    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable : Any]?) {
-        actions.forEach { (action) in
+
+    func run(forKey event: String, object anObject: Any, arguments dict: [AnyHashable: Any]?) {
+        actions.forEach { action in
             action.run(forKey: event, object: anObject, arguments: dict)
         }
     }

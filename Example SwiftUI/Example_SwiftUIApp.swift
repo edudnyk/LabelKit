@@ -1,6 +1,6 @@
 //
-//  AppDelegate.swift
-//  LabelKit - Example tvOS
+//  Example_SwiftUIApp.swift
+//  LabelKit - Example SwiftUI
 //
 //  Copyright (c) 2019-2021 Eugene Dudnyk
 //
@@ -31,14 +31,57 @@
 //  either expressed or implied, of the LabelKit project.
 //
 
-import UIKit
+import SwiftUI
 
+struct ContentViewWrapper: View {
+    var body: some View {
+        ContentView().environmentObject(TextGenerator())
+    }
+}
+
+/// If min iOS version is 14.0, use this:
+
+//@main
+//struct Example_SwiftUIApp: App {
+//    var body: some Scene {
+//        WindowGroup {
+//            ContentViewWrapper()
+//        }
+//    }
+//}
+
+/// Otherwise
+
+@available(iOS 13.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         return true
     }
+
+    // MARK: UISceneSession Lifecycle
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
 }
+
+@available(iOS 13.0, *)
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let scene = scene as? UIWindowScene else { return }
+        if let window = scene.windows.first {
+            self.window = window
+        } else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.windowScene = scene
+        }
+        window?.rootViewController = UIHostingController(rootView: ContentViewWrapper())
+        window?.makeKeyAndVisible()
+    }
+}
+
+/// End if

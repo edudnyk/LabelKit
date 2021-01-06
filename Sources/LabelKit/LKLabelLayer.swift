@@ -2,7 +2,7 @@
 //  LKLabelLayer.swift
 //  LabelKit
 //
-//  Copyright (c) 2019 Eugene Dudnyk
+//  Copyright (c) 2019-2021 Eugene Dudnyk
 //
 //  All rights reserved.
 //
@@ -34,16 +34,19 @@
 import QuartzCore
 import UIKit
 
-open class LKLabelLayer : CALayer {
-    fileprivate var stringDrawingContext : NSStringDrawingContext!
-    fileprivate var stringDrawingOptions : NSStringDrawingOptions!
-    private weak var textPresentationLayer : LKLabelLayer!
+@objc
+open class LKLabelLayer: CALayer {
+    fileprivate var stringDrawingContext: NSStringDrawingContext!
+    fileprivate var stringDrawingOptions: NSStringDrawingOptions!
+    private weak var textPresentationLayer: LKLabelLayer!
+    public var adjustsTextForCustomLineHeight = false
     
     /// The underlying attributed string drawn by the label layer.
     /// Animatable.
-    @objc @NSManaged open dynamic var attributedText : NSAttributedString?
+    @NSManaged
+    open dynamic var attributedText: NSAttributedString?
     
-    public override init() {
+    override public init() {
         super.init()
         commonInit()
     }
@@ -53,7 +56,7 @@ open class LKLabelLayer : CALayer {
         commonInit()
     }
     
-    private override init(layer: Any) {
+    override private init(layer: Any) {
         super.init(layer: layer)
         masksToBounds = false
         guard let textLayer = layer as? LKLabelLayer, let recentLayer = textLayer.textPresentationLayer != nil ? textLayer.textPresentationLayer : textLayer else { return }
@@ -63,7 +66,7 @@ open class LKLabelLayer : CALayer {
     }
     
     private func commonInit() {
-        stringDrawingOptions = [.usesFontLeading, .usesLineFragmentOrigin, .truncatesLastVisibleLine ]
+        stringDrawingOptions = [.usesFontLeading, .truncatesLastVisibleLine]
         stringDrawingContext = NSStringDrawingContext()
         needsDisplayOnBoundsChange = true
         isOpaque = false
@@ -71,25 +74,30 @@ open class LKLabelLayer : CALayer {
     
     /// Triggers attributed text change implicit animation.
     /// If layer is used without `LKLabel`, also triggers supporting bounds change action.
-    open override func action(forKey event: String) -> CAAction? {
+    @objc
+    override open func action(forKey event: String) -> CAAction? {
         if event == keyPath(\LKLabelLayer.attributedText) {
             let action = textPresentationLayer?.currentTextDidChangeAnimation
-            let fromText = action != nil ? action!.interpolatedFromAlpha > action!.interpolatedToAlpha ? action!.interpolatedFromAttributedText : action!.interpolatedToAttributedText : self.attributedText
+            let fromText = action != nil ? action!.interpolatedFromAlpha > action!.interpolatedToAlpha ? action!.interpolatedFromAttributedText : action!.interpolatedToAttributedText : attributedText
             return LKTextDidChangeAction(from: fromText)
         }
-        let superAction = super.action(forKey:event)
-        guard event == keyPath(\CALayer.bounds) && type(of: superAction) != LKCompositeAction.self else { return superAction }
-        let textDrawingBoundsAction = LKBoundsDidChangeAction(fromBounds: self.bounds)
-        let action : CAAction = superAction != nil ? LKCompositeAction(actions: [superAction!, textDrawingBoundsAction]) : textDrawingBoundsAction
+        let superAction = super.action(forKey: event)
+        guard event == keyPath(\CALayer.bounds),
+              type(of: superAction) != LKCompositeAction.self,
+              UIView.inheritedAnimationDuration > 0 else { return superAction }
+        let textDrawingBoundsAction = LKBoundsDidChangeAction(fromBounds: bounds)
+        let action: CAAction = superAction != nil ? LKCompositeAction(actions: [superAction!, textDrawingBoundsAction]) : textDrawingBoundsAction
         return action
     }
     
-    open override func preferredFrameSize()->CGSize {
-        let result = attributedText?.boundingRect(with:CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude), options:stringDrawingOptions, context:stringDrawingContext).size
+    @objc
+    override open func preferredFrameSize() -> CGSize {
+        let result = attributedText?.boundingRect(with: CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude), options: stringDrawingOptions, context: stringDrawingContext).size
         return CGSize(width: ceil((result?.width ?? 0) + 1), height: ceil((result?.height ?? 0) + 1))
     }
     
-    open override func draw(in ctx: CGContext) {
+    @objc
+    override open func draw(in ctx: CGContext) {
         drawText(in: ctx.boundingBoxOfClipPath)
     }
     
@@ -98,8 +106,9 @@ open class LKLabelLayer : CALayer {
         let textChangeAction = currentTextDidChangeAnimation
         let toAlpha = textChangeAction?.interpolatedToAlpha ?? 1.0
         let modelLayer = model()
-        let toDrawingString = textChangeAction?.interpolatedToAttributedText ?? modelLayer.attributedText
-        if textChangeAction?.interpolatedFromAlpha ?? 0 > 0 || toAlpha > 0 {
+        let toDrawingText = textChangeAction?.interpolatedToAttributedText ?? modelLayer.attributedText
+        let fromAlpha = textChangeAction?.interpolatedFromAlpha ?? 0
+        if fromAlpha > 0 || toAlpha > 0 {
             ctx.setAllowsAntialiasing(true)
             ctx.setAllowsFontSmoothing(true)
             ctx.setAllowsFontSubpixelPositioning(true)
@@ -111,14 +120,14 @@ open class LKLabelLayer : CALayer {
             if modelLayer != self {
                 stringDrawingOptions = [stringDrawingOptions, .truncatesLastVisibleLine]
             }
-            let fromAlpha = textChangeAction?.interpolatedFromAlpha ?? 0
             if fromAlpha > 0 {
                 let fromDrawingText = textChangeAction?.interpolatedFromAttributedText
                 if fromAlpha < 1 {
                     ctx.beginTransparencyLayer(auxiliaryInfo: nil)
                     ctx.setAlpha(fromAlpha)
                 }
-                fromDrawingText?.draw(with: rect, options:stringDrawingOptions, context: stringDrawingContext)
+                let fromRect = adjust(drawingRect: rect, for: fromDrawingText)
+                fromDrawingText?.draw(with: fromRect, options: stringDrawingOptions, context: stringDrawingContext)
                 if fromAlpha < 1 {
                     ctx.endTransparencyLayer()
                 }
@@ -128,7 +137,8 @@ open class LKLabelLayer : CALayer {
                     ctx.beginTransparencyLayer(auxiliaryInfo: nil)
                     ctx.setAlpha(toAlpha)
                 }
-                toDrawingString?.draw(with: rect, options:stringDrawingOptions, context: stringDrawingContext)
+                let toRect = adjust(drawingRect: rect, for: toDrawingText)
+                toDrawingText?.draw(with: toRect, options: stringDrawingOptions, context: stringDrawingContext)
                 if toAlpha < 1 {
                     ctx.endTransparencyLayer()
                 }
@@ -136,48 +146,82 @@ open class LKLabelLayer : CALayer {
         }
     }
     
-    open override class func needsDisplay(forKey key: String) -> Bool {
+    @objc
+    override open class func needsDisplay(forKey key: String) -> Bool {
         var result = super.needsDisplay(forKey: key)
         result = result || key == keyPath(\LKLabelLayer.attributedText) ||
-                            key == keyPath(\LKLabelLayer.currentTextDidChangeAnimation) ||
-                            key == keyPath(\LKLabelLayer.currentBoundsDidChangeAnimation) ||
-                            key == keyPath(\LKLabelLayer.bounds)
+            key == keyPath(\LKLabelLayer.currentTextDidChangeAnimation) ||
+            key == keyPath(\LKLabelLayer.currentBoundsDidChangeAnimation) ||
+            key == keyPath(\LKLabelLayer.bounds)
+        return result
+    }
+    
+    private func adjust(drawingRect: CGRect, for text: NSAttributedString?) -> CGRect {
+        guard let text = text, text.length > 0 else { return drawingRect }
+        var result = drawingRect
+        if stringDrawingOptions.contains(.usesLineFragmentOrigin) {
+            if adjustsTextForCustomLineHeight, let lastParagraphStyle = text.attribute(.paragraphStyle, at: text.length - 1, effectiveRange: nil) as? NSParagraphStyle {
+                result.origin.y = roundToPixels(result.origin.y + lastParagraphStyle.lineSpacing / 2.0, scale: contentsScale)
+            }
+        } else {
+            if let firstParagraphStyle = text.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle,
+               let firstFont = text.attribute(.font, at: 0, effectiveRange: nil) as? UIFont {
+                let lineHeightCompensation = adjustsTextForCustomLineHeight && firstParagraphStyle.lineHeightMultiple > 0 ? firstParagraphStyle.lineHeightMultiple * firstFont.lineHeight - firstFont.lineHeight : 0.0
+                result.origin.y = roundToPixels(result.origin.y + lineHeightCompensation * 1.5 + firstFont.ascender, scale: contentsScale)
+            }
+        }
         return result
     }
 }
 
 extension LKLabel {
-    open override func drawText(in rect: CGRect) {
-        let layer = self.labelLayer?.presentation() ?? self.labelLayer
+    override open func drawText(in rect: CGRect) {
+        let layer = labelLayer?.presentation() ?? labelLayer
         layer?.drawText(in: rect)
     }
     
-    open override var minimumScaleFactor: CGFloat {
+    @objc
+    override open var minimumScaleFactor: CGFloat {
         didSet(previousValue) {
             labelLayer?.stringDrawingContext.minimumScaleFactor = adjustsFontSizeToFitWidth ? minimumScaleFactor : 1.0
         }
     }
     
-    open override var adjustsFontSizeToFitWidth: Bool {
+    @objc
+    override open var adjustsFontSizeToFitWidth: Bool {
         didSet(previousValue) {
             let minimumScaleFactor = self.minimumScaleFactor
             self.minimumScaleFactor = minimumScaleFactor
         }
     }
     
-    open override var lineBreakMode: NSLineBreakMode {
+    @objc
+    override open var lineBreakMode: NSLineBreakMode {
         didSet(previousValue) {
             if let labelLayer = self.labelLayer {
-                if (lineBreakMode == .byTruncatingTail) {
+                if lineBreakMode == .byTruncatingTail {
                     labelLayer.stringDrawingOptions = labelLayer.stringDrawingOptions.union(.truncatesLastVisibleLine)
                 } else {
-                    labelLayer.stringDrawingOptions = labelLayer.stringDrawingOptions.remove(.truncatesLastVisibleLine)
+                    _ = labelLayer.stringDrawingOptions.remove(.truncatesLastVisibleLine)
                 }
             }
         }
     }
     
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    @objc
+    override open var numberOfLines: Int {
+        didSet(previousValue) {
+            if let labelLayer = self.labelLayer {
+                if numberOfLines != 1 {
+                    labelLayer.stringDrawingOptions = labelLayer.stringDrawingOptions.union(.usesLineFragmentOrigin)
+                } else {
+                    _ = labelLayer.stringDrawingOptions.remove(.usesLineFragmentOrigin)
+                }
+            }
+        }
+    }
+    
+    override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         let actionsDisabled = CATransaction.disableActions()
         CATransaction.setDisableActions(true)
         super.traitCollectionDidChange(previousTraitCollection)

@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
-//  LabelKit - Example iOS
+//  Utils.swift
+//  LabelKit
 //
-//  Copyright (c) 2019-2020 Eugene Dudnyk
+//  Copyright (c) 2019-2021 Eugene Dudnyk
 //
 //  All rights reserved.
 //
@@ -29,47 +29,13 @@
 //  The views and conclusions contained in the software and documentation are those
 //  of the authors and should not be interpreted as representing official policies,
 //  either expressed or implied, of the LabelKit project.
-//
 
-import LabelKit
 import UIKit
 
-class ViewController: UIViewController {
-    var timer: Timer?
-    @IBOutlet var label: LKLabel!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIView.performWithoutAnimation {
-            label.attributedText = NSAttributedString.createRandom()
-        }
-        startAnimation()
-    }
+internal func roundToPixels<T: FloatingPoint>(_ value: T, scale: T) -> T {
+    return round(value * scale) / scale
+}
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stopAnimation()
-    }
-
-    func startAnimation() {
-        guard timer == nil else { return }
-        let timer = Timer(timeInterval: 3, target: self, selector: #selector(updateText), userInfo: nil, repeats: true)
-        self.timer = timer
-        RunLoop.current.add(timer, forMode: .default)
-        updateText()
-    }
-    
-    func stopAnimation() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    @objc func updateText() {
-        view.setNeedsLayout()
-        label.setNeedsLayout()
-        UIView.animate(withDuration: 3, delay: 0, options: [], animations: {
-            self.label.attributedText = NSAttributedString.createRandom()
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
+internal func ceilToPixels<T: FloatingPoint>(_ value: T, scale: T) -> T {
+    return ceil(value * scale) / scale
 }

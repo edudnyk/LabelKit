@@ -2,7 +2,7 @@
 //  LKExtensions.swift
 //  LabelKit
 //
-//  Copyright (c) 2019 Eugene Dudnyk
+//  Copyright (c) 2019-2021 Eugene Dudnyk
 //
 //  All rights reserved.
 //
@@ -33,47 +33,46 @@
 
 import UIKit
 
-func keyPath(_ base: Any, suffix: Any)-> String {
+func keyPath(_ base: Any, suffix: Any) -> String {
     return "\(base).\(suffix)"
 }
 
-func keyPath(_ base: Any, range: NSRange)-> String {
+func keyPath(_ base: Any, range: NSRange) -> String {
     return keyPath(base, suffix: NSStringFromRange(range))
 }
 
-func keyPath<Root, Key>(_ keyPath: KeyPath<Root, Key>)->String {
+func keyPath<Root, Key>(_ keyPath: KeyPath<Root, Key>) ->String {
     return NSExpression(forKeyPath: keyPath).keyPath
 }
 
-func keyPathCocoa<Root, Key>(_ keyPath: KeyPath<Root, Key>)->NSString {
+func keyPathCocoa<Root, Key>(_ keyPath: KeyPath<Root, Key>) -> NSString {
     return NSExpression(forKeyPath: keyPath).keyPath as NSString
 }
 
 protocol LKNSDictionaryCoding {
-    static func lk_dictEncode(object: AnyObject?)->NSMutableDictionary
-    static func lk_dictDecode(dictionaryRepresentation dictionary: NSDictionary?)->Self
+    static func lk_encode(object: AnyObject?) -> NSMutableDictionary
+    static func lk_decode(dictionaryRepresentation dictionary: NSDictionary?)->Self
 }
 
-extension UIColor : LKNSDictionaryCoding {
-    
-    static func lk_dictEncode(object: AnyObject?)->NSMutableDictionary {
+extension UIColor: LKNSDictionaryCoding {
+    static func lk_encode(object: AnyObject?) -> NSMutableDictionary {
         let color = object as? UIColor
-        var red : CGFloat = 0, green : CGFloat = 0, blue : CGFloat = 0, alpha: CGFloat = 0
-        if color?.getRed(&red, green:&green, blue:&blue, alpha:&alpha) == false {
-            _ = color?.getWhite(&red, alpha:&alpha)
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        if color?.getRed(&red, green: &green, blue: &blue, alpha: &alpha) == false {
+            _ = color?.getWhite(&red, alpha: &alpha)
             green = red
             blue = red
         }
-        let result = NSMutableDictionary(sharedKeySet: NSMutableDictionary.sharedKeySet(forKeys: [ NSString("r"), NSString("g"), NSString("b"), NSString("a")] ))
+        let result = NSMutableDictionary(sharedKeySet: NSMutableDictionary.sharedKeySet(forKeys: [NSString("r"), NSString("g"), NSString("b"), NSString("a")]))
         result["r"] = red
         result["g"] = green
         result["b"] = blue
         result["a"] = alpha
         return result
     }
-    
-    static func lk_dictDecode(dictionaryRepresentation dictionary: NSDictionary?)->Self {
-        var red : CGFloat = 0, green : CGFloat = 0, blue : CGFloat = 0, alpha: CGFloat = 0
+
+    static func lk_decode(dictionaryRepresentation dictionary: NSDictionary?) -> Self {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         if let redValue = dictionary?["r"] as? CGFloat {
             red = redValue
         }
@@ -90,18 +89,17 @@ extension UIColor : LKNSDictionaryCoding {
     }
 }
 
-extension UIFont : LKNSDictionaryCoding {
-    
-    static func lk_dictEncode(object: AnyObject?)->NSMutableDictionary {
+extension UIFont: LKNSDictionaryCoding {
+    static func lk_encode(object: AnyObject?) -> NSMutableDictionary {
         let font = object as? UIFont ?? UIFont.preferredFont(forTextStyle: .body)
         let traits = font.fontDescriptor.object(forKey: UIFontDescriptor.AttributeName.traits) as? [UIFontDescriptor.TraitKey: Any] ?? [:]
         let weight = traits[.weight] as? UIFont.Weight ?? UIFont.Weight(0)
-        let dictionary = NSMutableDictionary(dictionary: ["pointSize" : font.pointSize,
-                                                          "weight" : weight.rawValue])
+        let dictionary = NSMutableDictionary(dictionary: ["pointSize": font.pointSize,
+                                                          "weight": weight.rawValue])
         return dictionary
     }
-    
-    static func lk_dictDecode(dictionaryRepresentation dictionary: NSDictionary?)->Self {
+
+    static func lk_decode(dictionaryRepresentation dictionary: NSDictionary?) -> Self {
         guard let pointSize = dictionary?["pointSize"] as? CGFloat, let weight = dictionary?["weight"] as? CGFloat else {
             return UIFont.preferredFont(forTextStyle: .body) as! Self
         }
@@ -109,58 +107,55 @@ extension UIFont : LKNSDictionaryCoding {
     }
 }
 
-extension NSParagraphStyle : LKNSDictionaryCoding {
-    
-    static func lk_dictEncode(object: AnyObject?)->NSMutableDictionary {
+extension NSParagraphStyle: LKNSDictionaryCoding {
+    static func lk_encode(object: AnyObject?) -> NSMutableDictionary {
         let paragraphStyle = object as? NSParagraphStyle ?? NSParagraphStyle.default
-        return NSMutableDictionary(dictionary: paragraphStyle.dictionaryWithValues(forKeys: [ keyPath(\NSParagraphStyle.lineSpacing),
-                                                                                              keyPath(\NSParagraphStyle.paragraphSpacing),
-                                                                                              keyPath(\NSParagraphStyle.alignment),
-                                                                                              keyPath(\NSParagraphStyle.headIndent),
-                                                                                              keyPath(\NSParagraphStyle.tailIndent),
-                                                                                              keyPath(\NSParagraphStyle.firstLineHeadIndent),
-                                                                                              keyPath(\NSParagraphStyle.minimumLineHeight),
-                                                                                              keyPath(\NSParagraphStyle.maximumLineHeight),
-                                                                                              keyPath(\NSParagraphStyle.lineBreakMode),
-                                                                                              keyPath(\NSParagraphStyle.baseWritingDirection),
-                                                                                              keyPath(\NSParagraphStyle.lineHeightMultiple),
-                                                                                              keyPath(\NSParagraphStyle.paragraphSpacingBefore),
-                                                                                              keyPath(\NSParagraphStyle.hyphenationFactor),
-                                                                                              keyPath(\NSParagraphStyle.defaultTabInterval),
-                                                                                              keyPath(\NSParagraphStyle.allowsDefaultTighteningForTruncation),
-        ]))
+        return NSMutableDictionary(dictionary: paragraphStyle.dictionaryWithValues(forKeys: [keyPath(\NSParagraphStyle.lineSpacing),
+                                                                                             keyPath(\NSParagraphStyle.paragraphSpacing),
+                                                                                             keyPath(\NSParagraphStyle.alignment),
+                                                                                             keyPath(\NSParagraphStyle.headIndent),
+                                                                                             keyPath(\NSParagraphStyle.tailIndent),
+                                                                                             keyPath(\NSParagraphStyle.firstLineHeadIndent),
+                                                                                             keyPath(\NSParagraphStyle.minimumLineHeight),
+                                                                                             keyPath(\NSParagraphStyle.maximumLineHeight),
+                                                                                             keyPath(\NSParagraphStyle.lineBreakMode),
+                                                                                             keyPath(\NSParagraphStyle.baseWritingDirection),
+                                                                                             keyPath(\NSParagraphStyle.lineHeightMultiple),
+                                                                                             keyPath(\NSParagraphStyle.paragraphSpacingBefore),
+                                                                                             keyPath(\NSParagraphStyle.hyphenationFactor),
+                                                                                             keyPath(\NSParagraphStyle.defaultTabInterval),
+                                                                                             keyPath(\NSParagraphStyle.allowsDefaultTighteningForTruncation)]))
     }
-    
-    static func lk_dictDecode(dictionaryRepresentation dictionary: NSDictionary?)->Self {
+
+    static func lk_decode(dictionaryRepresentation dictionary: NSDictionary?) -> Self {
         let mutableParagraphStyle = NSMutableParagraphStyle()
-        mutableParagraphStyle.setValuesForKeys(dictionary as! [String : Any])
+        mutableParagraphStyle.setValuesForKeys(dictionary as! [String: Any])
         return mutableParagraphStyle as NSParagraphStyle as! Self
     }
 }
 
-extension NSShadow : LKNSDictionaryCoding {
-    
-    static func lk_dictEncode(object: AnyObject?)->NSMutableDictionary {
-        let result = NSMutableDictionary(sharedKeySet: NSMutableDictionary.sharedKeySet(forKeys: [ keyPathCocoa(\NSShadow.shadowOffset),
-                                                                                                   keyPathCocoa(\NSShadow.shadowBlurRadius),
-                                                                                                   keyPathCocoa(\NSShadow.shadowColor)]))
+extension NSShadow: LKNSDictionaryCoding {
+    static func lk_encode(object: AnyObject?) -> NSMutableDictionary {
+        let result = NSMutableDictionary(sharedKeySet: NSMutableDictionary.sharedKeySet(forKeys: [keyPathCocoa(\NSShadow.shadowOffset),
+                                                                                                  keyPathCocoa(\NSShadow.shadowBlurRadius),
+                                                                                                  keyPathCocoa(\NSShadow.shadowColor)]))
         let shadow = object as? NSShadow ?? NSShadow()
         result[keyPath(\NSShadow.shadowOffset)] = shadow.shadowOffset
         result[keyPath(\NSShadow.shadowBlurRadius)] = shadow.shadowBlurRadius
         let color = shadow.shadowColor as? UIColor ?? UIColor.clear
-        result[keyPath(\NSShadow.shadowColor)] = UIColor.lk_dictEncode(object: color )
+        result[keyPath(\NSShadow.shadowColor)] = UIColor.lk_encode(object: color)
         return result
     }
-    
-    static func lk_dictDecode(dictionaryRepresentation dictionary: NSDictionary?)->Self {
-        let color = UIColor.lk_dictDecode(dictionaryRepresentation: dictionary?[keyPath(\NSShadow.shadowColor)] as? NSDictionary)
+
+    static func lk_decode(dictionaryRepresentation dictionary: NSDictionary?) -> Self {
+        let color = UIColor.lk_decode(dictionaryRepresentation: dictionary?[keyPath(\NSShadow.shadowColor)] as? NSDictionary)
         let result = Self()
         var shadowOffset = CGSize.zero
         if let shadowOffsetValue = dictionary?[keyPath(\NSShadow.shadowOffset)] as? CGSize {
             shadowOffset = shadowOffsetValue
         }
         result.shadowOffset = shadowOffset
-        var shadowBlurRadius : CGFloat = 0.0
+        var shadowBlurRadius: CGFloat = 0.0
         if let shadowBlurRadiusValue = dictionary?[keyPath(\NSShadow.shadowBlurRadius)] as? CGFloat {
             shadowBlurRadius = shadowBlurRadiusValue
         }
@@ -171,26 +166,20 @@ extension NSShadow : LKNSDictionaryCoding {
 }
 
 extension LKLabelLayer {
-    @objc var currentTextDidChangeAnimation : LKTextDidChangeAction? {
-        get {
-            return animation(forKey: keyPath(\LKLabelLayer.attributedText)) as? LKTextDidChangeAction
-        }
+    @objc var currentTextDidChangeAnimation: LKTextDidChangeAction? {
+        return animation(forKey: keyPath(\LKLabelLayer.attributedText)) as? LKTextDidChangeAction
     }
 
-    @objc var currentBoundsDidChangeAnimation : LKBoundsDidChangeAnimation? {
-        get {
-            return animation(forKey: keyPath(\LKBoundsDidChangeAnimation.bounds)) as? LKBoundsDidChangeAnimation
-        }
+    @objc var currentBoundsDidChangeAnimation: LKBoundsDidChangeAnimation? {
+        return animation(forKey: keyPath(\LKBoundsDidChangeAnimation.bounds)) as? LKBoundsDidChangeAnimation
     }
 }
 
 extension CABasicAnimation {
-    convenience init (forKeyPath keyPath: String, fromValue: Any?, toValue: Any?, duration: TimeInterval) {
+    convenience init(forKeyPath keyPath: String, fromValue: Any?, toValue: Any?, duration: TimeInterval) {
         self.init(keyPath: keyPath)
         self.fromValue = fromValue
         self.toValue = toValue
         self.duration = duration
     }
 }
-
-

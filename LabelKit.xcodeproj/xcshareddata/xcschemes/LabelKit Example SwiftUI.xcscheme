@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9EF4973622DEA73600F5F260"
-               BuildableName = "Example tvOS.app"
-               BlueprintName = "Example tvOS"
+               BlueprintIdentifier = "9E6245FB2592727500CFA632"
+               BuildableName = "Example SwiftUI.app"
+               BlueprintName = "Example SwiftUI"
                ReferencedContainer = "container:LabelKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9EF4973622DEA73600F5F260"
-            BuildableName = "Example tvOS.app"
-            BlueprintName = "Example tvOS"
+            BlueprintIdentifier = "9E6245FB2592727500CFA632"
+            BuildableName = "Example SwiftUI.app"
+            BlueprintName = "Example SwiftUI"
             ReferencedContainer = "container:LabelKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9EF4973622DEA73600F5F260"
-            BuildableName = "Example tvOS.app"
-            BlueprintName = "Example tvOS"
+            BlueprintIdentifier = "9E6245FB2592727500CFA632"
+            BuildableName = "Example SwiftUI.app"
+            BlueprintName = "Example SwiftUI"
             ReferencedContainer = "container:LabelKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

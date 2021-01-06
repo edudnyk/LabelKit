@@ -13,31 +13,31 @@ class LKExtensionsTests : XCTestCase {
     
     func testFontWeightDecoding() {
         let font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        let dict = UIFont.lk_dictEncode(object: font)
-        let font2 = UIFont.lk_dictDecode(dictionaryRepresentation: dict)
+        let dict = UIFont.lk_encode(object: font)
+        let font2 = UIFont.lk_decode(dictionaryRepresentation: dict)
         XCTAssertEqual(font, font2)
     }
     
     func testColorDecoding() {
         let color = UIColor(red: 0.2, green: 0.4, blue: 0.3, alpha: 0.55)
-        let dict = UIColor.lk_dictEncode(object: color)
-        let color2 = UIColor.lk_dictDecode(dictionaryRepresentation: dict)
+        let dict = UIColor.lk_encode(object: color)
+        let color2 = UIColor.lk_decode(dictionaryRepresentation: dict)
         XCTAssertEqual(color, color2)
     }
     
     func testParagraphStyleDecoding() {
         let ps = NSMutableParagraphStyle()
         ps.lineSpacing = 42
-        let dict = NSParagraphStyle.lk_dictEncode(object: ps)
-        let ps2 = NSParagraphStyle.lk_dictDecode(dictionaryRepresentation: dict)
+        let dict = NSParagraphStyle.lk_encode(object: ps)
+        let ps2 = NSParagraphStyle.lk_decode(dictionaryRepresentation: dict)
         XCTAssertEqual(ps, ps2)
     }
     
     func testShadowDecoding() {
         let shadow = NSShadow()
         shadow.shadowColor = UIColor.magenta
-        let dict = NSShadow.lk_dictEncode(object: shadow)
-        let shadow2 = NSShadow.lk_dictDecode(dictionaryRepresentation: dict)
+        let dict = NSShadow.lk_encode(object: shadow)
+        let shadow2 = NSShadow.lk_decode(dictionaryRepresentation: dict)
         XCTAssertEqual(shadow, shadow2)
     }
     
@@ -46,8 +46,8 @@ class LKExtensionsTests : XCTestCase {
         self.measure {
             for _ in 0 ..< 1000 {
                 let font = UIFont.systemFont(ofSize: 10 + rnd() * 20, weight: UIFont.Weight(rnd() * 2 - 1))
-                let dict = UIFont.lk_dictEncode(object: font)
-                let _ = UIFont.lk_dictDecode(dictionaryRepresentation: dict)
+                let dict = UIFont.lk_encode(object: font)
+                let _ = UIFont.lk_decode(dictionaryRepresentation: dict)
             }
         }
     }

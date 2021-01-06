@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
-//  LabelKit - Example iOS
+//  TextGenerator.swift
+//  LabelKit - Example SwiftUI
 //
-//  Copyright (c) 2019-2020 Eugene Dudnyk
+//  Copyright (c) 2019-2021 Eugene Dudnyk
 //
 //  All rights reserved.
 //
@@ -31,45 +31,33 @@
 //  either expressed or implied, of the LabelKit project.
 //
 
-import LabelKit
-import UIKit
+import Foundation
+import Combine
+import SwiftUI
 
-class ViewController: UIViewController {
-    var timer: Timer?
-    @IBOutlet var label: LKLabel!
+class TextGenerator: ObservableObject {
+    @Published var attributedString: NSAttributedString = NSAttributedString.createRandom()
+    @Published var text: Text = Text.createRandom()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIView.performWithoutAnimation {
-            label.attributedText = NSAttributedString.createRandom()
-        }
-        startAnimation()
+    private var attributedStringSubscription: Cancellable!
+    private var textSubscription: Cancellable!
+    init () {
+        let autoconnect = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+        attributedStringSubscription = autoconnect
+            .receive(on: DispatchQueue.main)
+            .map({ _ in
+                return NSAttributedString.createRandom()
+            })
+            .assign(to: \TextGenerator.attributedString, on: self)
+        textSubscription = autoconnect
+            .receive(on: DispatchQueue.main)
+            .map({ _ in
+                return Text.createRandom()
+            })
+            .assign(to: \TextGenerator.text, on: self)
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stopAnimation()
-    }
-
-    func startAnimation() {
-        guard timer == nil else { return }
-        let timer = Timer(timeInterval: 3, target: self, selector: #selector(updateText), userInfo: nil, repeats: true)
-        self.timer = timer
-        RunLoop.current.add(timer, forMode: .default)
-        updateText()
-    }
-    
-    func stopAnimation() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    @objc func updateText() {
-        view.setNeedsLayout()
-        label.setNeedsLayout()
-        UIView.animate(withDuration: 3, delay: 0, options: [], animations: {
-            self.label.attributedText = NSAttributedString.createRandom()
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+    deinit {
+        attributedStringSubscription.cancel()
+        textSubscription.cancel()
     }
 }
