@@ -111,6 +111,7 @@ import SwiftUI
 
 
 @available(iOS 13.0.0, *)
+@available(tvOS 13.0.0, *)
 public extension Text {
     static func createRandom() -> Text {
         let idx = Int(round(rnd() * CGFloat(strings.count - 1)))

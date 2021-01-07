@@ -34,6 +34,7 @@
 import SwiftUI
 
 @available(iOS 13.0.0, *)
+@available(tvOS 13.0.0, *)
 public struct LabelView: View {
     public var attributedText: NSAttributedString?
 
@@ -67,6 +68,7 @@ public struct LabelView: View {
 }
 
 @available(iOS 13.0.0, *)
+@available(tvOS 13.0.0, *)
 internal struct InternalLabelView: UIViewRepresentable {
     static let durationRegEx = try? NSRegularExpression(pattern: "duration: ([\\d\\.]*),",
                                                         options: [.caseInsensitive])
@@ -131,6 +133,7 @@ extension String {
 }
 
 @available(iOS 13.0.0, *)
+@available(tvOS 13.0.0, *)
 public struct LabelView_Previews: PreviewProvider {
     public static var previews: some View {
         HStack {
