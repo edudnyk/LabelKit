@@ -36,54 +36,50 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 @available(tvOS 13.0.0, *)
 public struct LabelView: View {
-    public var attributedText: NSAttributedString?
+    public let attributedText: NSAttributedString?
 
     public init(attributedText: NSAttributedString?) {
         self.attributedText = attributedText
     }
-
-    public var text: String? {
-        get {
-            return attributedText?.string
+    
+    public init(text: String?) {
+        guard let text = text else {
+            attributedText = nil
+            return
         }
-        set(newValue) {
-            guard let text = newValue else {
-                attributedText = nil
-                return
-            }
-            attributedText = NSAttributedString(string: text)
-        }
+        attributedText = NSAttributedString(string: text)
     }
 
     public var body: some View {
-        GeometryReader { geometry in
-            internalLabelView(frame: geometry.frame(in: .local))
-        }
+        internalLabelView
+            .fixedSize(horizontal: false, vertical: true)
     }
 
-    private func internalLabelView(frame: CGRect) -> some View {
-        return InternalLabelView(width: frame.width, attributedText: attributedText)
-            .position(x: frame.midX, y: frame.midY)
+    var internalLabelView: some View {
+        InternalLabelView(attributedText: attributedText)
     }
 }
 
 @available(iOS 13.0.0, *)
 @available(tvOS 13.0.0, *)
-internal struct InternalLabelView: UIViewRepresentable {
-    static let durationRegEx = try? NSRegularExpression(pattern: "duration: ([\\d\\.]*),",
+private struct InternalLabelView: UIViewRepresentable {
+    private static let durationRegEx = try? NSRegularExpression(pattern: "duration: ([\\d\\.]*),",
                                                         options: [.caseInsensitive])
 
     typealias UIViewType = LKLabel
 
-    var width: CGFloat
     var attributedText: NSAttributedString?
-    var numberOfLines: Int = 0
+    var numberOfLines: Int
+    
+    init(attributedText: NSAttributedString?, numberOfLines: Int = 0) {
+        self.attributedText = attributedText
+        self.numberOfLines = numberOfLines
+    }
 
     func makeUIView(context: Context) -> UIViewType {
         let label = UIViewType()
         UIView.performWithoutAnimation {
             label.numberOfLines = numberOfLines
-            label.preferredMaxLayoutWidth = width
             label.attributedText = attributedText
             label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         }
@@ -92,15 +88,15 @@ internal struct InternalLabelView: UIViewRepresentable {
 
     func updateUIView(_ label: UIViewType, context: Context) {
         label.numberOfLines = numberOfLines
-        label.preferredMaxLayoutWidth = width
         let transaction = context.transaction
         var duration: Double = 0
         if let animation = transaction.animation {
             let animationDescription = String(describing: animation)
             if animationDescription.count > 0,
-               let durationResult = InternalLabelView.durationRegEx?.firstMatch(in: animationDescription,
-                                                                                options: [],
-                                                                                range: NSRange(location: 0, length: animationDescription.count)),
+               let durationResult = Self.durationRegEx?.firstMatch(in: animationDescription,
+                                                                   options: [],
+                                                                   range: NSRange(location: 0,
+                                                                                  length: animationDescription.count)),
                durationResult.numberOfRanges > 0
             {
                 let matchRange = durationResult.range(at: 1)
@@ -117,6 +113,13 @@ internal struct InternalLabelView: UIViewRepresentable {
         } else {
             UIView.performWithoutAnimation(setter)
         }
+    }
+    
+    func _overrideSizeThatFits(_ size: inout CGSize, in proposedSize: _ProposedSize, uiView: UIViewType) {
+        let mirror = Mirror(reflecting: proposedSize)
+        let width = mirror.children.first?.value as? CGFloat
+        uiView.preferredMaxLayoutWidth = width ?? 0
+        size = uiView.intrinsicContentSize
     }
 }
 
