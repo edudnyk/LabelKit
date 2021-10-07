@@ -1,0 +1,13 @@
+//
+//  Config.xcconfig
+//  LabelKit
+//
+//  Created by Eugene Dudnyk on 28/02/2021.
+//  Copyright © 2021 Imaginarium Works. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+PATHCONFIG_Debug = "TEST-DEBUG"
+PATHCONFIG_Release = "TEST-RELEASE"
+PATHCONFIG_RESOLVED = $(PATHCONFIG_$(CONFIGURATION))

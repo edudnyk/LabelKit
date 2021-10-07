@@ -36,28 +36,24 @@ import Combine
 import SwiftUI
 
 class TextGenerator: ObservableObject {
-    @Published var attributedString: NSAttributedString = NSAttributedString.createRandom()
-    @Published var text: Text = Text.createRandom()
+    @Published var attributedString: NSAttributedString = NSAttributedString.random()
+    @Published var text = Text.random()
     
-    private var attributedStringSubscription: Cancellable!
-    private var textSubscription: Cancellable!
+    private var attributedStringSubscription: Cancellable?
+    private var textSubscription: Cancellable?
     init () {
         let autoconnect = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
         attributedStringSubscription = autoconnect
             .receive(on: DispatchQueue.main)
             .map({ _ in
-                return NSAttributedString.createRandom()
+                return NSAttributedString.random()
             })
             .assign(to: \TextGenerator.attributedString, on: self)
         textSubscription = autoconnect
             .receive(on: DispatchQueue.main)
             .map({ _ in
-                return Text.createRandom()
+                return Text.random()
             })
             .assign(to: \TextGenerator.text, on: self)
-    }
-    deinit {
-        attributedStringSubscription.cancel()
-        textSubscription.cancel()
     }
 }

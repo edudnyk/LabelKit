@@ -124,6 +124,7 @@
 		9E406D8822E37135001CB087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E406D9322E3714B001CB087 /* LabelKit tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LabelKit tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E406D9722E3714B001CB087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E478D3E25EC1A9B00BA51A8 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9E6245F025922EAB00CFA632 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		9E6245FC2592727500CFA632 /* Example SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E6245FE2592727500CFA632 /* Example_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_SwiftUIApp.swift; sourceTree = "<group>"; };
@@ -295,6 +296,7 @@
 				9E9636BD22DC2E2A00014F86 /* LKExtensions.swift */,
 				9E6245F025922EAB00CFA632 /* LabelView.swift */,
 				9E296FF52595A71B00CC573D /* Utils.swift */,
+				9E478D3E25EC1A9B00BA51A8 /* Config.xcconfig */,
 			);
 			name = LabelKit;
 			path = Sources/LabelKit;
@@ -465,6 +467,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E9636F922DC32A200014F86 /* Build configuration list for PBXNativeTarget "Example iOS" */;
 			buildPhases = (
+				9EB0BB4D25EA0A160030CE50 /* ShellScript */,
 				9E9636E422DC32A000014F86 /* Sources */,
 				9E9636E522DC32A000014F86 /* Frameworks */,
 				9E9636E622DC32A000014F86 /* Resources */,
@@ -612,6 +615,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9EB0BB4D25EA0A160030CE50 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nSUFFIX=\"arm[v6][74]\"\nif [[ ! -z \"$LLVM_TARGET_TRIPLE_SUFFIX\" ]]; then\n  SUFFIX=$LLVM_TARGET_TRIPLE_SUFFIX\nfi\necho $SUFFIX\necho $PATHCONFIG_RESOLVED\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9E406D8022E37135001CB087 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -739,6 +762,7 @@
 /* Begin XCBuildConfiguration section */
 		9E2B92D722BAFC7400A007F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E478D3E25EC1A9B00BA51A8 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1114,10 +1138,11 @@
 		9E9636FA22DC32A200014F86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Example iOS/Example iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = W6T3BTXAHJ;
+				DEVELOPMENT_TEAM = UP8HTB5ZA2;
 				INFOPLIST_FILE = "Example iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1138,6 +1163,7 @@
 		9E9636FB22DC32A200014F86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Example iOS/Example iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;

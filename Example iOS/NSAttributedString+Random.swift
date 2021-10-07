@@ -46,7 +46,7 @@ let strings = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sc
 
 extension NSAttributedString {
     
-    static func createRandom() -> NSAttributedString {
+    static func random() -> NSAttributedString {
         let idx = Int(round(rnd() * CGFloat(strings.count - 1)))
         let string = strings[idx]
         let attributedText = NSMutableAttributedString(string: string)
@@ -113,24 +113,30 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 @available(tvOS 13.0.0, *)
 public extension Text {
-    static func createRandom() -> Text {
+    static func random() -> Text {
         let idx = Int(round(rnd() * CGFloat(strings.count - 1)))
         let string = strings[idx]
-        return Text(string).font(Text.randomFont()).foregroundColor(Text.randomColor())
+        return Text(string)
+    }
+}
+
+extension View {
+    func randomShadow() -> some View {
+        shadow(color: randomColor, radius: rnd() * 5, x: rnd() * -5, y: rnd() * -5)
     }
     
-    static func applyRandomShadow(to text: Text) -> some View {
-        return text.shadow(color: Text.randomColor(), radius: rnd() * 5, x: rnd() * -5, y: rnd() * -5)
-    }
-    
-    private static func randomFont() -> Font {
+    func randomFont() -> some View {
         let pointSize = 20.0 + rnd() * 22.0
 //        let weigth = Font.Weight(CGFloat(rnd() * 2 - 1))
-        return Font.system(size: pointSize)
+        return font(Font.system(size: pointSize))
     }
 
-    private static func randomColor() -> Color {
-        return Color(red: Double(rnd()) * 0.6, green: Double(rnd()) * 0.6, blue: Double(rnd()) * 0.6, opacity: 1)
+    func randomForegroundColor() -> some View {
+        foregroundColor(randomColor)
+    }
+    
+    var randomColor: Color {
+        Color(red: Double(rnd()) * 0.6, green: Double(rnd()) * 0.6, blue: Double(rnd()) * 0.6, opacity: 1)
     }
 }
 

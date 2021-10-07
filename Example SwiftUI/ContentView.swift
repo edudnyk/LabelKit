@@ -44,11 +44,16 @@ struct ContentView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         HStack {
                             if swiftUITextToggled {
-                                Text.applyRandomShadow(to: textGenerator.text)
+                                textGenerator.text
+                                    .randomFont()
+                                    .randomForegroundColor()
+                                    .randomShadow()
                                     .animation(.easeInOut(duration: 3))
+                                    .fixedSize(horizontal: false, vertical: true)
                             } else {
                                 LabelView(attributedText: textGenerator.attributedString)
                                     .animation(.easeInOut(duration: 3))
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
                         }
                         .background(Color(.white))
@@ -61,7 +66,6 @@ struct ContentView: View {
                     .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
                     .background(Color(.red))
                 }.background(Color(.white))
-                
                 Text(swiftUITextToggled ? "Animating Text with SwiftUI" : "Animating NSAttributedString with LabelKit")
                     .frame(maxWidth: .infinity)
                     .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
